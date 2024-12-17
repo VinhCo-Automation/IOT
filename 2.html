@@ -12,7 +12,7 @@
 
             document.getElementById('go-back').addEventListener('click', function() {
                 // Navigate back to Web 1 (replace the path with actual URL)
-                window.location.href = 'index.html'; // Replace with the actual URL to Web 1
+                window.location.href = '1.html'; // Replace with the actual URL to Web 1
             });
 
             const firebaseConfig = {
@@ -102,9 +102,6 @@
 
                         if (fireRisk !== "Không có dữ liệu") {
                             const fireValue = parseFloat(fireRisk);
-                            let backgroundColor, levelText, colorText;
-                                                
-                            // Xử lý mức độ cháy theo giá trị
                             if (fireValue < 20) {
                                 backgroundColor = "#28a745"; // Green
                                 levelText = "Cấp độ cháy: Thấp (I)";
@@ -122,31 +119,17 @@
                                 levelText = "Cấp độ cháy: Cao (IV)";
                                 colorText = "#ffffff"; // White text
                             } else {
-                                // Nếu mức độ cháy >= 80 (mức rất cao)
                                 backgroundColor = "#FF0000"; // Dark red
                                 levelText = "Cấp độ cháy: Rất cao (V)";
                                 colorText = "#ffffff"; // White text
-                                // Phát âm thanh và hiển thị overlay cảnh báo
                                 audi.play();
                                 overlay.style.display = 'block';
                             }
-                        
-                            // Cập nhật văn bản cảnh báo
                             fireRatioElement.textContent = levelText;
-                        
-                            // Cập nhật giao diện
-                            const fireDiv = document.querySelector('.fire');
-                            fireDiv.style.backgroundColor = backgroundColor;
-                            fireDiv.style.color = colorText;
-                            fireDiv.style.borderRadius = "8px";
-                            fireDiv.style.padding = "30px";
-                        
                         } else {
-                            // Nếu không có dữ liệu cháy
                             audi.pause();
                             audi.currentTime = 0;
-                            overlay.style.display = 'none'; // Ẩn overlay khi không có dữ liệu
-                            fireRatioElement.textContent = "Không có dữ liệu";
+                            fireRatioElement.textContent = levelText;
                         }
 
                         fireDiv.style.backgroundColor = backgroundColor;
